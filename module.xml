@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="dc-sample.ZPM">
+  <Document name="objectscript-template.ZPM">
     <Module>
-      <Name>dc-sample</Name>
-      <Version>2.0.10</Version>
-      <Description>Basic InterSystems IRIS Development Template</Description>
+      <Name>objectscript-template</Name>
+      <Version>1.1.2</Version>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
+      <Dependencies>
+        <ModuleReference>
+            <Name>csvgen</Name>
+            <Version>*</Version>
+        </ModuleReference>
+      </Dependencies>
+      <FileCopy Name="credit_risk_data.csv" Target="/tmp/credit_risk_data.csv"></FileCopy>
       <Resource Name="dc.sample.PKG"/>
-      <UnitTest Name="/tests" Package="dc.sample.unittests" Phase="test"/>
-
+      <Resource Name="dc.creditrisk.PKG"/>
+      <CSPApplication Url="/api/creditrisk" 
+        DispatchClass="dc.creditrisk.CreditRiskAPI" 
+        MatchRoles=":%All"
+        PasswordAuth="1" 
+        UnauthenticatedEnabled="1" 
+        Recurse="1"
+        UseCookies="2"
+        CookiePath="/api/creditrisk"
+      />
+      <Invokes>
+        <Invoke Class="dc.creditrisk.FileLoader" Method="LoadCreditRiskData">
+        </Invoke>
+        <Invoke Class="dc.creditrisk.CreditRiskModel" Method="BuildAndTrain">
+        </Invoke>
+        <Invoke Class="dc.creditrisk.CreditRiskModel" Method="TestPredictions">
+        </Invoke>
+      </Invokes>
     </Module>
   </Document>
 </Export>

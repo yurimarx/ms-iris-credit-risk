@@ -5,11 +5,13 @@ on:
     branches:
       - master
       - main
+  pull_request:
+    branches:
+      - master
+      - main
   release:
     types:
       - released
-permissions:
-  contents: write
 
 jobs:
   build:
