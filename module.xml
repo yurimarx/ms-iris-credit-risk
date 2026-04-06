@@ -11,6 +11,10 @@
             <Name>csvgen</Name>
             <Version>*</Version>
         </ModuleReference>
+        <ModuleReference>
+          <Name>swagger-ui</Name>
+          <Version>1.*.*</Version>
+        </ModuleReference>
       </Dependencies>
       <FileCopy Name="credit_risk_data.csv" Target="/tmp/credit_risk_data.csv"></FileCopy>
       <Resource Name="dc.sample.PKG"/>

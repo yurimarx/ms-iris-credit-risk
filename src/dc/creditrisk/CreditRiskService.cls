@@ -79,6 +79,12 @@ ClassMethod Predict(data As %DynamicObject, Output pResponse As %DynamicObject) 
         Set pResponse.Purpose = data.Purpose
         Set pResponse.RiskPrediction = rset.RiskPrediction
         Set pResponse.RiskProbability = rset.RiskProbability
+        If (pResponse.RiskPrediction = "1") {
+            Set pResponse.RiskAnalisysPrediction = "Good credit"
+        } Else {
+            Set pResponse.RiskAnalisysPrediction = "Poor credit"
+        }
+        
     } Catch ex {
         Set sc = ex.AsStatus()
     }

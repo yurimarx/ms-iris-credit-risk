@@ -10,6 +10,7 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
     <Route Url="/creditrisk/:id" Method="PUT" Call="Update"/>
     <Route Url="/creditrisk/:id" Method="DELETE" Call="Delete"/>
     <Route Url="/creditrisk/predict" Method="POST" Call="Predict"/>
+    <Route Url="/_spec" Method="GET" Call="SwaggerSpec" />
 </Routes>
 }
 
@@ -193,6 +194,18 @@ ClassMethod Delete(pId As %String) As %Status
         Write { "error": { "summary": (ex.Name), "details": ($System.Status.GetErrorText(sc)) } }.%ToJSON()
     }
     Return sc
+}
+
+ClassMethod SwaggerSpec() As %Status
+{
+  Set tSC = ##class(%REST.API).GetWebRESTApplication($NAMESPACE, %request.Application, .swagger)
+  Do swagger.info.%Remove("x-ISC_Namespace")
+  Set swagger.basePath = "/api/creditrisk"
+  Set swagger.info.title = "Credit Risk API"
+  Set swagger.info.version = "1.0.0"
+  Set swagger.host = "localhost:52773"
+  Write swagger.%ToJSON()
+  Return $$$OK
 }
 
 }

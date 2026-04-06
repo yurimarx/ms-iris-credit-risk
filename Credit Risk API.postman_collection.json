@@ -1,0 +1,224 @@
+{
+  "info": {
+    "_postman_id": "1c8c2597-0e84-4779-be93-a7d82163986d",
+    "name": "Credit Risk API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "2548523"
+  },
+  "item": [
+    {
+      "name": "Get By Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/creditrisk/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "creditrisk",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/creditrisk",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "creditrisk"
+          ]
+        },
+        "description": " Implements GET /creditrisk "
+      },
+      "response": []
+    },
+    {
+      "name": "Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"Age\": 27,\r\n        \"Sex\": \"female\",\r\n        \"Job\": 2,\r\n        \"Housing\": \"own\",\r\n        \"SavingAccounts\": \"little\",\r\n        \"CheckingAccount\": \"little\",\r\n        \"CreditAmount\": 3123,\r\n        \"Duration\": 24,\r\n        \"Purpose\": \"car\",\r\n        \"CreditRisk\": 2\r\n    }",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/creditrisk",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "creditrisk"
+          ]
+        },
+        "description": " Implements POST /creditrisk "
+      },
+      "response": []
+    },
+    {
+      "name": "Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"Age\": 27,\r\n        \"Sex\": \"female\",\r\n        \"Job\": 2,\r\n        \"Housing\": \"own\",\r\n        \"SavingAccounts\": \"little\",\r\n        \"CheckingAccount\": \"little\",\r\n        \"CreditAmount\": 3123,\r\n        \"Duration\": 24,\r\n        \"Purpose\": \"car\",\r\n        \"CreditRisk\": 2\r\n    }",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/creditrisk/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "creditrisk",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        },
+        "description": " Implements PUT /creditrisk/:id "
+      },
+      "response": []
+    },
+    {
+      "name": "Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/creditrisk/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "creditrisk",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        },
+        "description": " Implements DELETE /creditrisk/:id "
+      },
+      "response": []
+    },
+    {
+      "name": "Predict Good Credit",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Age\": 42,\r\n    \"Sex\": \"male\",\r\n    \"Job\": 1,\r\n    \"Housing\": \"own\",\r\n    \"SavingAccounts\": \"rich\",\r\n    \"CheckingAccount\": \"little\",\r\n    \"CreditAmount\": 10000,\r\n    \"Duration\": 6,\r\n    \"Purpose\": \"car\"\r\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/creditrisk/predict",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "creditrisk",
+            "predict"
+          ]
+        },
+        "description": " Implements POST /creditrisk/predict "
+      },
+      "response": []
+    },
+    {
+      "name": "Predict Poor Credit",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Age\": 42,\r\n    \"Sex\": \"male\",\r\n    \"Job\": 1,\r\n    \"Housing\": \"own\",\r\n    \"SavingAccounts\": \"little\",\r\n    \"CheckingAccount\": \"little\",\r\n    \"CreditAmount\": 10000,\r\n    \"Duration\": 6,\r\n    \"Purpose\": \"car\"\r\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/creditrisk/predict",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "creditrisk",
+            "predict"
+          ]
+        },
+        "description": " Implements POST /creditrisk/predict "
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "//localhost:52773/api/creditrisk"
+    }
+  ]
+}
