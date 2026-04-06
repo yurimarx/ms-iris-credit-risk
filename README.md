@@ -25,40 +25,36 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
-## How to Test it
+## How to Test it - REST API
 
-Open IRIS terminal:
-
-```
-$ docker-compose exec iris iris session iris
-USER>write ##class(dc.sample.ObjectScript).Test()
-```
-## How to start coding
-This repository is ready to code in VSCode with ObjectScript plugin.
-Install [VSCode](https://code.visualstudio.com/), [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) and [ObjectScript](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript) plugin and open the folder in VSCode.
-Open /src/cls/PackageSample/ObjectScript.cls class and try to make changes - it will be compiled in running IRIS docker container.
-![docker_compose](https://user-images.githubusercontent.com/2781759/76656929-0f2e5700-6547-11ea-9cc9-486a5641c51d.gif)
-
-Feel free to delete PackageSample folder and place your ObjectScript classes in a form
-/src/Package/Classname.cls
-[Read more about folder setup for InterSystems ObjectScript](https://community.intersystems.com/post/simplified-objectscript-source-folder-structure-package-manager)
-
-The script in Installer.cls will import everything you place under /src into IRIS.
+Import the postman collection https://github.com/yurimarx/ms-iris-credit-risk/blob/master/Credit%20Risk%20API.postman_collection.json or the local file Credit Risk API.postman_collection.json
 
 
-## What's inside the repository
+## How to Test it - Kafka API
 
-### Dockerfile
+1. Open and Start the production http://localhost:52795/csp/user/EnsPortal.ProductionConfig.zen?PRODUCTION=dc.creditrisk.CreditRiskProduction
+2. Open Kafka UI: http://localhost:8080/
+3. Go to Topics and create a CreditRiskInTopic if not exists.
+4. Click the CreditRiskInTopic link and click Produce Message (on the top right corner of the page)
+5. Fills iris into Key and the following json data into Value:
+{
+    "Age": 42,
+    "Sex": "male",
+    "Job": 1,
+    "Housing": "own",
+    "SavingAccounts": "rich",
+    "CheckingAccount": "little",
+    "CreditAmount": 10000,
+    "Duration": 6,
+    "Purpose": "car"
+}
+6. Click button Produce
+7. Go to Topics and click the CreditRiskOutTopic link
+8. Go to Messages and see the response message sent
+9. See the request and response flow on the Interoperabitiy production also. 
 
-The simplest Dockerfile which starts IRIS and imports code from /src folder into it.
-Use the related docker-compose.yml to easily setup additional parametes like port number and where you map keys and host folders.
 
+### References
 
-### .vscode/settings.json
+1. Dataset used to train the model: https://www.kaggle.com/datasets/benjaminmcgregor/german-credit-data-set-with-credit-risk
 
-Settings file to let you immediately code in VSCode with [VSCode ObjectScript plugin](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript))
-
-### .vscode/launch.json
-Config file if you want to debug with VSCode ObjectScript
-
-[Read about all the files in this article](https://community.intersystems.com/post/dockerfile-and-friends-or-how-run-and-collaborate-objectscript-projects-intersystems-iris)
